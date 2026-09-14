@@ -3,7 +3,7 @@ package org.example.meeter.citybreak;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.meeter.meeting.Entity;
+import org.example.meeter.people.Human;
 import org.example.meeter.place.Place;
 
 import java.time.LocalDateTime;
@@ -29,4 +29,13 @@ public class Citybreak {
     @ManyToMany
     @JoinTable(name="trip_place", joinColumns = @JoinColumn(name="trip_id"), inverseJoinColumns = @JoinColumn(name="place_id"))
     List<Place> places;
+
+    @ManyToMany
+    @JoinTable(name="trip_human",
+            joinColumns = @JoinColumn(name="trip_id"),
+            inverseJoinColumns = @JoinColumn(name="human_id"),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"trip_id", "human_id"})
+    )
+    List<Human> humansInTrip;
+
 }
