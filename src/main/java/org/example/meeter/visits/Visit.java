@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @Getter
 @Table(name="visits")
-public class Visit {
+public class Visit implements Interaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,4 +27,12 @@ public class Visit {
     @ManyToOne
     @JoinColumn(name="place_id")
     private Place visitPlace;
+
+    private UUID uuid;
+
+    @Override
+    public LocalDate getInteractionPointsDate() {
+        LocalDate visitLastDay =  LocalDate.from(visitDate).plusDays(this.duration-1);
+        return visitLastDay;
+    }
 }
