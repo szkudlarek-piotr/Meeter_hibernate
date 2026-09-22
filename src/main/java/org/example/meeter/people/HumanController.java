@@ -1,5 +1,6 @@
 package org.example.meeter.people;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -7,22 +8,21 @@ import java.util.List;
 @RestController
 @RequestMapping("/human")
 public class HumanController {
-    private HumanRepository humanRepository;
+    private HumanService humanService;
 
-    public HumanController(HumanRepository humanRepository) {
-        this.humanRepository = humanRepository;
+    public HumanController(HumanService humanService) {
+        this.humanService = humanService;
     }
 
     @GetMapping("/all")
-    public List<Human> getAllHumans() {
-        return humanRepository.findAll();
+    public List<HumanTileDto> getAllHumans() {
+        return humanService.listAllHumans();
     }
 
-    @PostMapping("/add/{name}/{surname}")
-    public void addHuman(@PathVariable(name="name") String name, @PathVariable(name="surname") String surname) {
-        Human humanToCreate = new Human();
-        humanToCreate.setName(name);
-        humanToCreate.setSurname(surname);
-        humanRepository.save(humanToCreate);
+
+
+    @GetMapping("/humansWoUuid")
+    public List<Human> woUuid() {
+        return humanService.getHumansWoUuid();
     }
 }
