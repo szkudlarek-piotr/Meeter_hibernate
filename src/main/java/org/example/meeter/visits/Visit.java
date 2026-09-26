@@ -47,4 +47,14 @@ public class Visit implements Interaction {
         LocalDate visitLastDay =  LocalDate.from(visitDate).plusDays(this.duration-1);
         return visitLastDay;
     }
+
+    public VisitDto getDto() {
+        VisitDto dto = new VisitDto();
+        dto.setDuration(duration);
+        dto.setLongDesc(longDesc);
+        dto.setShortDesc(shortDesc);
+        dto.setLongDesc(longDesc);
+        dto.setGuests(this.visitHumans.stream().map(Human::getHumanTileDto).toList());
+        return dto;
+    }
 }
