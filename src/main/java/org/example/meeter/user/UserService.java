@@ -1,5 +1,6 @@
 package org.example.meeter.user;
 
+import org.example.meeter.errors.ResourceNotFoundException;
 import org.example.meeter.people.Human;
 import org.example.meeter.people.HumanRepository;
 import org.example.meeter.userRoles.UserRole;
@@ -32,7 +33,7 @@ public class UserService {
         String username = map.get("username");
         String email = map.get("email");
         UUID humanUuid = UUID.fromString(map.get("humanUuid"));
-        Human human = humanRepository.findByUuid(humanUuid);
+        Human human = humanRepository.findByUuid(humanUuid).orElseThrow(() -> new ResourceNotFoundException("Nie zaleziono człowieka o UUID = %s podczas próby dodawania użytkownika.".formatted(humanUuid)));
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
         userToAdd.setUsername(username);
         userToAdd.setPasswordHash(hashedPassword);

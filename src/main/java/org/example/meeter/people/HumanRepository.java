@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface HumanRepository extends JpaRepository <Human, Long> {
@@ -21,7 +22,7 @@ public interface HumanRepository extends JpaRepository <Human, Long> {
     @Query("SELECT q FROM Quote q WHERE q.isPublic = true  AND q.author = ?1")
     public List<Quote> getPublicQuotesOfHumans(Human human);
 
-    public Human findByUuid(UUID uuid);
+    public Optional<Human> findByUuid(UUID uuid);
 
 
 }
