@@ -9,13 +9,11 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Table(name="user_roles")
+@Table(name="roles")
 public class UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String roleName;
-
-    UUID uuid = java.util.UUID.randomUUID();
 }

@@ -26,9 +26,6 @@ public class UserService {
     public UserDto addUser(Map<String, String> map) {
         User userToAdd = new User();
 
-        UUID roleUuid = UUID.fromString(map.get("roleUuid"));
-        UserRole role = userRolesRepository.findByUuid(roleUuid);
-        userToAdd.setUserRole(role);
         String password = map.get("password");
         String username = map.get("username");
         String email = map.get("email");
