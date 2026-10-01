@@ -37,44 +37,44 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/createAllUsers")
-    public void createAllUsers() {
-        List<Human> allHumans = humanRepository.findAll();
-        for (Human human : allHumans) {
-            String usernameToSave = "";
-            String name = human.getName();
-            String surname = human.getSurname();
-            for (int i = 1; i< name.length(); i++) {
-                String testedUsername = name.substring(0, i) + surname;
-                String normalizedUserName = Normalizer
-                        .normalize(testedUsername, Normalizer.Form.NFD)
-                        .replaceAll("\\p{M}", "")
-                        .replace("ł", "l")
-                        .replace("Ł", "L")
-                        .replace("-", "_")
-                        .replace(" ", "_")
-                        .replace(" / ", "")
-                        .toLowerCase();
-                if (!checkIfUsernameExists(normalizedUserName)) {
-                    usernameToSave = normalizedUserName;
-                    break;
-                }
-            }
-            User userToSave = new User();
-            userToSave.setUsername(usernameToSave);
-
-            String salt = BCrypt.gensalt();
-            String hashedPassword = BCrypt.hashpw("haslo", salt);
-            userToSave.setPasswordHash(hashedPassword);
-
-            userToSave.setHuman(human);
-
-            UserRole role = userRolesRepository.getRoleByName("USER");
-
-            userToSave.addRole(role);
-
-            userRepository.save(userToSave);
-        }
-    }
+//    @GetMapping("/createAllUsers")
+//    public void createAllUsers() {
+//        List<Human> allHumans = humanRepository.findAll();
+//        for (Human human : allHumans) {
+//            String usernameToSave = "";
+//            String name = human.getName();
+//            String surname = human.getSurname();
+//            for (int i = 1; i< name.length(); i++) {
+//                String testedUsername = name.substring(0, i) + surname;
+//                String normalizedUserName = Normalizer
+//                        .normalize(testedUsername, Normalizer.Form.NFD)
+//                        .replaceAll("\\p{M}", "")
+//                        .replace("ł", "l")
+//                        .replace("Ł", "L")
+//                        .replace("-", "_")
+//                        .replace(" ", "_")
+//                        .replace(" / ", "")
+//                        .toLowerCase();
+//                if (!checkIfUsernameExists(normalizedUserName)) {
+//                    usernameToSave = normalizedUserName;
+//                    break;
+//                }
+//            }
+//            User userToSave = new User();
+//            userToSave.setUsername(usernameToSave);
+//
+//            String salt = BCrypt.gensalt();
+//            String hashedPassword = BCrypt.hashpw("haslo", salt);
+//            userToSave.setPasswordHash(hashedPassword);
+//
+//            userToSave.setHuman(human);
+//
+//            UserRole role = userRolesRepository.getRoleByName("USER");
+//
+//            userToSave.addRole(role);
+//
+//            userRepository.save(userToSave);
+//        }
+//    }
 
 }
