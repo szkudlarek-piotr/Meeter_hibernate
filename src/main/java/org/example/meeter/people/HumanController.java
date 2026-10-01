@@ -1,6 +1,8 @@
 package org.example.meeter.people;
 
-import org.springframework.http.ResponseEntity;
+import jakarta.transaction.Transactional;
+import org.example.meeter.userDetailsService.CurrentUser;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,5 +26,12 @@ public class HumanController {
     @GetMapping("/humansWoUuid")
     public List<Human> woUuid() {
         return humanService.getHumansWoUuid();
+    }
+
+    @Transactional
+    @GetMapping("/me")
+    public HumanTileDto showDetailsAboutMe(@AuthenticationPrincipal CurrentUser currentUser) {
+        Human human = humanService.findHumanById(currentUser.getHuman().getId());
+        return human.getHumanTileDto();
     }
 }

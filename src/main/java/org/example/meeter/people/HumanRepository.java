@@ -24,5 +24,7 @@ public interface HumanRepository extends JpaRepository <Human, Long> {
 
     public Optional<Human> findByUuid(UUID uuid);
 
+    public Optional<Human> findHumanById(Long id);
+
 
 }

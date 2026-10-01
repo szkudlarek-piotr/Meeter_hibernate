@@ -1,5 +1,6 @@
 package org.example.meeter.people;
 
+import org.example.meeter.errors.ResourceNotFoundException;
 import org.example.meeter.quote.Quote;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,10 @@ public class HumanService {
         List<Human> list = humanRepository.findAll();
         return list.stream().map(Human::getHumanTileDto).toList();
     }
+
+    public Human findHumanById(Long id) {
+        return humanRepository.findHumanById(id).orElseThrow(() -> new ResourceNotFoundException("Nie znaleziono czlowieka o id = 5."));
+    };
 
 
     public List<Quote> getPublicQuotes(Human human) {
