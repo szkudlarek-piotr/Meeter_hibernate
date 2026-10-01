@@ -57,7 +57,6 @@ public class User {
     public UserDto getDto() {
         UserDto dto = new UserDto();
         dto.setUsername(this.getUsername());
-//        dto.setRoleString(this.userRole.getRoleName());
         dto.setUuid(this.uuid);
         dto.setHumanName(this.human.getFullName());
         return dto;
