@@ -43,6 +43,7 @@ public class User {
     )
     private Set<UserRole> userRoles = new HashSet<>();
 
+    @Column(updatable = false, nullable = false, unique = true)
     UUID uuid = UUID.randomUUID();
 
     @CurrentTimestamp
