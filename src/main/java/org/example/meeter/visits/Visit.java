@@ -54,7 +54,7 @@ public class Visit implements Interaction {
         dto.setLongDesc(longDesc);
         dto.setShortDesc(shortDesc);
         dto.setLongDesc(longDesc);
-        dto.setGuests(this.visitHumans.stream().map(Human::getHumanTileDto).toList());
+        dto.setGuests(this.visitHumans.stream().map(Human::getHumanDtoForInteraction).toList());
         return dto;
     }
 }

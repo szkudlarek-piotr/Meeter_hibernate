@@ -83,4 +83,11 @@ public class Human {
         return dto;
     }
 
+    public HumanDtoForInteraction getHumanDtoForInteraction() {
+        HumanDtoForInteraction dto = new HumanDtoForInteraction();
+        dto.setFullName("%s %s".formatted(this.name, this.surname));
+        dto.setUuid(this.uuid);
+        return dto;
+    }
+
 }

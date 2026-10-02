@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.example.meeter.people.HumanTileDto;
+import org.example.meeter.people.HumanDtoForInteraction;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,5 +21,5 @@ public class VisitDto {
     private LocalDateTime visitDate;
     @Size(min=1, message = "Wizyta powinna trwać co najmniej jeden dzień.")
     private int duration;
-    private List<HumanTileDto> guests;
+    private List<HumanDtoForInteraction> guests;
 }
