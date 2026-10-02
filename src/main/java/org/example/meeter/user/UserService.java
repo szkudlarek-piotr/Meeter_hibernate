@@ -30,7 +30,7 @@ public class UserService {
         String username = map.get("username");
         String email = map.get("email");
         UUID humanUuid = UUID.fromString(map.get("humanUuid"));
-        Human human = humanRepository.findByUuid(humanUuid).orElseThrow(() -> new ResourceNotFoundException("Nie zaleziono człowieka o UUID = %s podczas próby dodawania użytkownika.".formatted(humanUuid)));
+        Human human = humanRepository.findHumanByUuid(humanUuid).orElseThrow(() -> new ResourceNotFoundException("Nie zaleziono człowieka o UUID = %s podczas próby dodawania użytkownika.".formatted(humanUuid)));
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
         userToAdd.setUsername(username);
         userToAdd.setPasswordHash(hashedPassword);

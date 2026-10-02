@@ -34,4 +34,12 @@ public class HumanService {
         return humanRepository.getAllHumansWithoutUuid();
     }
 
+    public Human getHumanByUuid(UUID uuid) {
+        return humanRepository
+                .findHumanByUuid(uuid)
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Nie znaleziono uzytkownika o UUID = %s.".formatted(uuid))
+                );
+    }
+
 }

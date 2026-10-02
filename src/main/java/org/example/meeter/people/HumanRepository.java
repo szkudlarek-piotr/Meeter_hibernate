@@ -22,7 +22,7 @@ public interface HumanRepository extends JpaRepository <Human, Long> {
     @Query("SELECT q FROM Quote q WHERE q.isPublic = true  AND q.author = ?1")
     public List<Quote> getPublicQuotesOfHumans(Human human);
 
-    public Optional<Human> findByUuid(UUID uuid);
+    public Optional<Human> findHumanByUuid(UUID uuid);
 
     public Optional<Human> findHumanById(Long id);
 
