@@ -2,6 +2,7 @@ package org.example.meeter.citybreak;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.meeter.people.Human;
@@ -22,6 +23,9 @@ public class Citybreak {
     private Long Id;
 
     private String name;
+    @Size(max=10240)
+    private String longDesc;
+
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
