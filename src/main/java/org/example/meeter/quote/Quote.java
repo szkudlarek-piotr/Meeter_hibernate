@@ -1,11 +1,13 @@
 package org.example.meeter.quote;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.meeter.people.Human;
+import org.example.meeter.user.User;
 import org.hibernate.annotations.CurrentTimestamp;
 
 import java.time.LocalDateTime;
@@ -32,4 +34,7 @@ public class Quote {
 
     @Column(nullable = false, unique = true, updatable = false)
     private java.util.UUID uuid = UUID.randomUUID();
+
+    @JsonIgnore
+    private User createdBy;
 }

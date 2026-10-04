@@ -1,5 +1,6 @@
 package org.example.meeter.meeting;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -8,6 +9,7 @@ import lombok.Setter;
 import org.example.meeter.interfaces.Interaction;
 import org.example.meeter.people.Human;
 import org.example.meeter.place.Place;
+import org.example.meeter.user.User;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -41,6 +43,9 @@ public class Meeting implements Interaction {
     private Place place;
 
     private UUID uuid;
+
+    @JsonIgnore
+    private User createdBy;
 
     public LocalDate getInteractionPointsDate() {
         return this.date;

@@ -1,10 +1,12 @@
 package org.example.meeter.citybreak;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.meeter.people.Human;
 import org.example.meeter.place.Place;
+import org.example.meeter.user.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,6 +24,9 @@ public class Citybreak {
     private String name;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+
+    @JsonIgnore
+    private User createdBy;
 
     @Column(nullable = false, unique = true, updatable = false)
     private java.util.UUID uuid = UUID.randomUUID();

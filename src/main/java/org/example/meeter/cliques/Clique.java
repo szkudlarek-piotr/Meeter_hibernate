@@ -1,5 +1,6 @@
 package org.example.meeter.cliques;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.meeter.people.Human;
 import org.example.meeter.place.Place;
+import org.example.meeter.user.User;
 
 import java.util.List;
 
@@ -30,5 +32,8 @@ public class Clique {
 
     @OneToMany(mappedBy = "clique")
     List<Human> cliqueMembers;
+
+    @JsonIgnore
+    private User createdBy;
 
 }

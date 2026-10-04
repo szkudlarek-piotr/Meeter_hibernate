@@ -1,9 +1,11 @@
 package org.example.meeter.place;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.meeter.user.User;
 
 @Entity
 @Getter
@@ -19,4 +21,8 @@ public class Place {
     @Size(min=-180, max=180, message = "Długość geograficzna może przyjmować wartości od -180 do 180.")
     private double longitude;
     private String category;
+
+    @JsonIgnore
+    private User createdBy;
+
 }

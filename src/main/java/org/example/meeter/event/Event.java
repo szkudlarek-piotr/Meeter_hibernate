@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.example.meeter.interfaces.Interaction;
 import org.example.meeter.people.Human;
 import org.example.meeter.place.Place;
+import org.example.meeter.user.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -36,6 +37,9 @@ public class Event implements Interaction {
     private LocalDateTime meLeavingDate;
 
     private String photoName;
+
+    @JsonIgnore
+    private User createdBy;
 
     @JsonIgnore
     @ManyToMany
