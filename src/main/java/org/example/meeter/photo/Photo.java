@@ -20,6 +20,9 @@ public class Photo {
 
     private double latitude;
     private double longitude;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private PhotoType photoType;
 
     private LocalDateTime generationTime;
 
