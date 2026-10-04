@@ -45,6 +45,7 @@ public class Visit implements Interaction {
     private UUID uuid;
 
     @JsonIgnore
+    @ManyToOne
     private User createdBy;
 
     @Override

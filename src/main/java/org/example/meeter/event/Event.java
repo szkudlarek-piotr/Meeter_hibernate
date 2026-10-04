@@ -39,6 +39,7 @@ public class Event implements Interaction {
     private String photoName;
 
     @JsonIgnore
+    @ManyToOne
     private User createdBy;
 
     @JsonIgnore

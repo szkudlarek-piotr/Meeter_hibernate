@@ -36,5 +36,6 @@ public class Quote {
     private java.util.UUID uuid = UUID.randomUUID();
 
     @JsonIgnore
+    @ManyToOne
     private User createdBy;
 }

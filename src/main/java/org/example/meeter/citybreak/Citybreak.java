@@ -30,6 +30,7 @@ public class Citybreak {
     private LocalDateTime endDate;
 
     @JsonIgnore
+    @ManyToOne
     private User createdBy;
 
     @Column(nullable = false, unique = true, updatable = false)

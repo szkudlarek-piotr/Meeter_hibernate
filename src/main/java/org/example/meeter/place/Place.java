@@ -23,6 +23,7 @@ public class Place {
     private String category;
 
     @JsonIgnore
+    @ManyToOne
     private User createdBy;
 
 }

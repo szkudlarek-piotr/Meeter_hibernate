@@ -45,6 +45,7 @@ public class Meeting implements Interaction {
     private UUID uuid;
 
     @JsonIgnore
+    @ManyToOne
     private User createdBy;
 
     public LocalDate getInteractionPointsDate() {

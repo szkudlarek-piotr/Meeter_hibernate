@@ -34,6 +34,7 @@ public class Clique {
     List<Human> cliqueMembers;
 
     @JsonIgnore
+    @ManyToOne
     private User createdBy;
 
 }

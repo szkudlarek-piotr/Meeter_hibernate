@@ -22,5 +22,6 @@ public class Song {
     private String title;
 
     @JsonIgnore
+    @ManyToOne
     private User createdBy;
 }
