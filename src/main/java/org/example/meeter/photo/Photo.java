@@ -18,8 +18,12 @@ public class Photo {
 
     private String photoName;
 
-    private double latitude;
-    private double longitude;
+    @Column(nullable = true)
+    private Double latitude;
+
+    @Column(nullable = true)
+    private Double longitude;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private PhotoType photoType;
