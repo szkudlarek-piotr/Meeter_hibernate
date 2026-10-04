@@ -1,5 +1,6 @@
 package org.example.meeter.people;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,6 +8,7 @@ import org.example.meeter.citybreak.Citybreak;
 import org.example.meeter.cliques.Clique;
 import org.example.meeter.event.Event;
 import org.example.meeter.meeting.Meeting;
+import org.example.meeter.photo.Photo;
 import org.example.meeter.place.Place;
 import org.example.meeter.quote.Quote;
 import org.example.meeter.songs.Song;
@@ -20,7 +22,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Table(name="people")
+@Table(name= "people")
 public class Human {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,8 +66,21 @@ public class Human {
     @ManyToOne
     private Song song;
 
+    @OneToOne
+    @JoinColumn(name="profile_photo_id")
+    public Photo profilePhoto;
+
     public String getFullName() {
         return "%s %s".formatted(this.name, this.surname);
+    }
+
+    @JsonProperty
+    public String getProfilePhoto() {
+        if (this.profilePhoto != null) {
+            return "http://localhost:8080/photos/people/%s".formatted(this.profilePhoto.getPhotoName());
+        } else {
+            return "http://localhost:8080/photos/people/anonymous.jpg";
+        }
     }
 
 
@@ -80,14 +95,20 @@ public class Human {
         
         dto.setCliqueName(this.clique.getCliqueName());
         dto.setNumberOfVisits(this.visits.size());
+        dto.setPhotoLink(this.getProfilePhoto());
+
         return dto;
     }
 
     public HumanDtoForInteraction getHumanDtoForInteraction() {
         HumanDtoForInteraction dto = new HumanDtoForInteraction();
         dto.setFullName("%s %s".formatted(this.name, this.surname));
+        dto.setPhotoLink(this.getProfilePhoto());
         dto.setUuid(this.uuid);
+
         return dto;
     }
+
+
 
 }

@@ -2,17 +2,28 @@ package org.example.meeter.admin;
 
 import org.example.meeter.people.Human;
 import org.example.meeter.people.HumanRepository;
+import org.example.meeter.photo.Photo;
+import org.example.meeter.photo.PhotoRepository;
+import org.example.meeter.photo.PhotoType;
 import org.example.meeter.user.User;
 import org.example.meeter.user.UserRepository;
 import org.example.meeter.userRoles.UserRole;
 import org.example.meeter.userRoles.UserRolesRepository;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.Normalizer;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/admin")
@@ -21,11 +32,14 @@ public class AdminController {
     public final UserRepository userRepository;
     public final HumanRepository humanRepository;
     public final UserRolesRepository userRolesRepository;
+    public final PhotoRepository photoRepository;
 
-    public AdminController(UserRepository userRepository, HumanRepository humanRepository, UserRolesRepository userRolesRepository) {
+
+    public AdminController(UserRepository userRepository, HumanRepository humanRepository, UserRolesRepository userRolesRepository, PhotoRepository photoRepository) {
         this.userRepository = userRepository;
         this.humanRepository = humanRepository;
         this.userRolesRepository = userRolesRepository;
+        this.photoRepository = photoRepository;
     }
 
     public boolean checkIfUsernameExists(String username) {
@@ -34,6 +48,40 @@ public class AdminController {
             return false;
         } else {
             return true;
+        }
+    }
+
+    @GetMapping("/migratePhotos")
+    public void migrateHumanPhotos() {
+        Path meeterPhotosFolderPath = Paths.get("C:\\Users\\piotr\\Desktop\\projekty\\react_meeter2\\react_meeter_2\\backend\\photos");
+        List<Human> allHumans = humanRepository.findAll();
+        for (Human human : allHumans) {
+            Long id = human.getId();
+            String potentialPhotoName = id + ".jpg";
+            Path potentialPhotoPath = meeterPhotosFolderPath.resolve(potentialPhotoName);
+            if (Files.exists(potentialPhotoPath)) {
+                Photo newPhoto = new Photo();
+                UUID photoUuid = UUID.randomUUID();
+                String newPhotoName = photoUuid + ".jpg";
+                newPhoto.setPhotoName(newPhotoName);
+                newPhoto.setPhotoType(PhotoType.PROFILE_PICTURE);
+                newPhoto.setUuid(photoUuid);
+                newPhoto.setGenerationTime(LocalDateTime.now());
+
+                Photo savedPhoto =  photoRepository.save(newPhoto);
+
+                human.setProfilePhoto(savedPhoto);
+                humanRepository.save(human);
+                try {
+                    Files.copy(potentialPhotoPath, Paths.get("C:\\Users\\piotr\\Desktop\\projekty\\meeter\\src\\main\\resources\\static\\photos\\people\\%s".formatted(newPhotoName)));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+//                newPhoto.setPhotoName(newPhotoName);
+//                newPhoto.setHumanPhoto(true);
+
+            }
         }
     }
 
