@@ -11,5 +11,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class HumanDtoForInteraction {
     private String fullName;
+    private String photoLink;
     private UUID uuid;
 }

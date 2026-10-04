@@ -11,6 +11,7 @@ public class HumanTileDto {
     private String fullName;
     private String cliqueName;
     private String randomQuote;
+    private String photoLink;
     private int numberOfVisits;
 
 }
