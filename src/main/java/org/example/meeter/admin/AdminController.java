@@ -51,39 +51,35 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/migratePhotos")
-    public void migrateHumanPhotos() {
-        Path meeterPhotosFolderPath = Paths.get("C:\\Users\\piotr\\Desktop\\projekty\\react_meeter2\\react_meeter_2\\backend\\photos");
-        List<Human> allHumans = humanRepository.findAll();
-        for (Human human : allHumans) {
-            Long id = human.getId();
-            String potentialPhotoName = id + ".jpg";
-            Path potentialPhotoPath = meeterPhotosFolderPath.resolve(potentialPhotoName);
-            if (Files.exists(potentialPhotoPath)) {
-                Photo newPhoto = new Photo();
-                UUID photoUuid = UUID.randomUUID();
-                String newPhotoName = photoUuid + ".jpg";
-                newPhoto.setPhotoName(newPhotoName);
-                newPhoto.setPhotoType(PhotoType.PROFILE_PICTURE);
-                newPhoto.setUuid(photoUuid);
-                newPhoto.setGenerationTime(LocalDateTime.now());
-
-                Photo savedPhoto =  photoRepository.save(newPhoto);
-
-                human.setProfilePhoto(savedPhoto);
-                humanRepository.save(human);
-                try {
-                    Files.copy(potentialPhotoPath, Paths.get("C:\\Users\\piotr\\Desktop\\projekty\\meeter\\src\\main\\resources\\static\\photos\\people\\%s".formatted(newPhotoName)));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
+//    @GetMapping("/migratePhotos")
+//    public void migrateHumanPhotos() {
+//        Path meeterPhotosFolderPath = Paths.get("C:\\Users\\piotr\\Desktop\\projekty\\react_meeter2\\react_meeter_2\\backend\\photos");
+//        List<Human> allHumans = humanRepository.findAll();
+//        for (Human human : allHumans) {
+//            Long id = human.getId();
+//            String potentialPhotoName = id + ".jpg";
+//            Path potentialPhotoPath = meeterPhotosFolderPath.resolve(potentialPhotoName);
+//            if (Files.exists(potentialPhotoPath)) {
+//                Photo newPhoto = new Photo();
+//                UUID photoUuid = UUID.randomUUID();
+//                String newPhotoName = photoUuid + ".jpg";
 //                newPhoto.setPhotoName(newPhotoName);
-//                newPhoto.setHumanPhoto(true);
-
-            }
-        }
-    }
+//                newPhoto.setPhotoType(PhotoType.PROFILE_PICTURE);
+//                newPhoto.setUuid(photoUuid);
+//                newPhoto.setGenerationTime(LocalDateTime.now());
+//
+//                Photo savedPhoto =  photoRepository.save(newPhoto);
+//
+//                human.setProfilePhoto(savedPhoto);
+//                humanRepository.save(human);
+//                try {
+//                    Files.copy(potentialPhotoPath, Paths.get("C:\\Users\\piotr\\Desktop\\projekty\\meeter\\src\\main\\resources\\static\\photos\\people\\%s".formatted(newPhotoName)));
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
 
 //    @GetMapping("/createAllUsers")
 //    public void createAllUsers() {
