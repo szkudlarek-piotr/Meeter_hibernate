@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.meeter.interfaces.Interaction;
@@ -28,6 +29,8 @@ public class Meeting implements Interaction {
     private LocalDate date;
 
     private String shortDesc;
+
+    @Size(max=10240)
     private String longDesc;
 
     @ManyToMany
@@ -50,6 +53,10 @@ public class Meeting implements Interaction {
 
     public LocalDate getInteractionPointsDate() {
         return this.date;
+    }
+
+    public void addHumanToMeeting(Human human) {
+        meetingMembers.add(human);
     }
 
 }
