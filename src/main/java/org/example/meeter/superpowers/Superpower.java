@@ -6,8 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.meeter.auth.user.User;
-import org.example.meeter.photo.Photo;
+import org.example.meeter.multimedia.photo.Photo;
+import org.example.meeter.people.Human;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -30,4 +32,7 @@ public class Superpower {
 
     @ManyToOne
     private User addedBy;
+
+    @ManyToMany(mappedBy = "superpowers")
+    private List<Human> humansWithSuperpower;
 }

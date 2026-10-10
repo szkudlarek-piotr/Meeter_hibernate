@@ -1,5 +1,6 @@
 package org.example.meeter.people;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -13,8 +14,10 @@ import org.example.meeter.place.Place;
 import org.example.meeter.quote.Quote;
 import org.example.meeter.multimedia.songs.Song;
 import org.example.meeter.interactions.visits.Visit;
+import org.example.meeter.superpowers.Superpower;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -65,6 +68,20 @@ public class Human {
 
     @ManyToOne
     private Song song;
+
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(
+            name="human_superpower",
+            joinColumns = @JoinColumn(name="human_id"),
+            inverseJoinColumns = @JoinColumn(name="superpower_id"),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"human_id", "superpower_id"}, name = "unique_human_superpower")
+    )
+    List<Superpower> superpowers = new ArrayList<>();
+
+    public void addSuperpower(Superpower superpower) {
+        superpowers.add(superpower);
+    }
 
     @OneToOne
     @JoinColumn(name="profile_photo_id")
