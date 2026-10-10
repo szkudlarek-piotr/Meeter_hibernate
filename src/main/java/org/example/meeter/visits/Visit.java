@@ -8,8 +8,7 @@ import lombok.Setter;
 import org.example.meeter.interfaces.Interaction;
 import org.example.meeter.people.Human;
 import org.example.meeter.place.Place;
-import org.example.meeter.user.User;
-import org.hibernate.annotations.UuidGenerator;
+import org.example.meeter.auth.user.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

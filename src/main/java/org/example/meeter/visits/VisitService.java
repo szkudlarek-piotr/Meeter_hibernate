@@ -2,10 +2,9 @@ package org.example.meeter.visits;
 
 import org.example.meeter.errors.ResourceNotFoundException;
 import org.example.meeter.people.Human;
-import org.example.meeter.user.User;
+import org.example.meeter.auth.user.User;
 import org.springframework.stereotype.Service;
 
-import java.lang.module.ResolutionException;
 import java.util.List;
 import java.util.UUID;
 

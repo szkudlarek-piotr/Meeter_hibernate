@@ -1,16 +1,14 @@
 package org.example.meeter.visits;
 
 import org.example.meeter.people.Human;
-import org.example.meeter.people.HumanController;
 import org.example.meeter.people.HumanService;
-import org.example.meeter.user.User;
-import org.example.meeter.userDetailsService.CurrentUser;
+import org.example.meeter.auth.user.User;
+import org.example.meeter.auth.userDetailsService.CurrentUser;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
