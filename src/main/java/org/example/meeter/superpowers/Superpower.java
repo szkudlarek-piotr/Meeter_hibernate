@@ -14,6 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name="superpowers")
 public class Superpower {
     @Id
     @GeneratedValue
