@@ -1,7 +1,7 @@
 package org.example.meeter.admin;
 
 import org.example.meeter.people.HumanRepository;
-import org.example.meeter.photo.PhotoRepository;
+import org.example.meeter.multimedia.photo.PhotoRepository;
 import org.example.meeter.auth.user.User;
 import org.example.meeter.auth.user.UserRepository;
 import org.example.meeter.auth.userRoles.UserRolesRepository;

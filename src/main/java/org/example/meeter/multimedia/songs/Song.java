@@ -1,4 +1,4 @@
-package org.example.meeter.songs;
+package org.example.meeter.multimedia.songs;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

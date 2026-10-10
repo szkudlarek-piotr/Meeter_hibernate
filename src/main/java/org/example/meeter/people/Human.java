@@ -8,10 +8,10 @@ import org.example.meeter.interactions.citybreak.Citybreak;
 import org.example.meeter.cliques.Clique;
 import org.example.meeter.interactions.event.Event;
 import org.example.meeter.interactions.meeting.Meeting;
-import org.example.meeter.photo.Photo;
+import org.example.meeter.multimedia.photo.Photo;
 import org.example.meeter.place.Place;
 import org.example.meeter.quote.Quote;
-import org.example.meeter.songs.Song;
+import org.example.meeter.multimedia.songs.Song;
 import org.example.meeter.interactions.visits.Visit;
 
 import java.time.LocalDate;

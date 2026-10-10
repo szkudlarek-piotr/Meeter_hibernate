@@ -1,4 +1,4 @@
-package org.example.meeter.photo;
+package org.example.meeter.multimedia.photo;
 
 import jakarta.persistence.*;
 import lombok.Getter;

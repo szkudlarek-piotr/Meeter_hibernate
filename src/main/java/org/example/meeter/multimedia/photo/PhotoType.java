@@ -1,4 +1,4 @@
-package org.example.meeter.photo;
+package org.example.meeter.multimedia.photo;
 
 public enum PhotoType {
     PROFILE_PICTURE,
