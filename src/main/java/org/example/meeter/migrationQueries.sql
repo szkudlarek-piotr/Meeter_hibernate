@@ -33,3 +33,7 @@ FROM real_meeter.meeting_human;
 ###
 
 
+--superpowers migration
+INSERT INTO java_meeter_rebuild.superpowers(id, name, added_by_id, uuid)
+SELECT id, superpower_name, 272, uuid() FROM real_meeter.superpowers
+WHERE real_meeter.superpowers.id NOT IN (SELECT id FROM java_meeter_rebuild.superpowers);
