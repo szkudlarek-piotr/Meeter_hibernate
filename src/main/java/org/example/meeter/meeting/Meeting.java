@@ -59,5 +59,15 @@ public class Meeting implements Interaction {
         meetingMembers.add(human);
     }
 
+    public MeetingDto toDto() {
+        MeetingDto dto = new MeetingDto();
+        dto.setUuid(this.uuid);
+        dto.setShortDesc(this.shortDesc);
+        dto.setLongDesc(this.longDesc);
+        dto.setMeetingMembers(this.meetingMembers.stream().map(Human::getHumanDtoForInteraction).toList());
+        dto.setDate(this.getDate());
+        return dto;
+    }
+
 }
 
