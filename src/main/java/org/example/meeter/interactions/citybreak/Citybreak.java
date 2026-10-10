@@ -1,4 +1,4 @@
-package org.example.meeter.citybreak;
+package org.example.meeter.interactions.citybreak;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

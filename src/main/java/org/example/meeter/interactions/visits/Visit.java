@@ -1,11 +1,11 @@
-package org.example.meeter.visits;
+package org.example.meeter.interactions.visits;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.meeter.interfaces.Interaction;
+import org.example.meeter.interactions.Interaction;
 import org.example.meeter.people.Human;
 import org.example.meeter.place.Place;
 import org.example.meeter.auth.user.User;

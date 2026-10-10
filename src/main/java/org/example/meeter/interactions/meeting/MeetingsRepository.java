@@ -1,6 +1,5 @@
-package org.example.meeter.meeting;
+package org.example.meeter.interactions.meeting;
 
-import com.sun.jdi.event.MethodEntryEvent;
 import org.example.meeter.people.Human;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

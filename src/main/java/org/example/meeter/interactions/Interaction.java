@@ -1,4 +1,4 @@
-package org.example.meeter.interfaces;
+package org.example.meeter.interactions;
 
 import java.time.LocalDate;
 

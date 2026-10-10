@@ -1,4 +1,4 @@
-package org.example.meeter.event;
+package org.example.meeter.interactions.event;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.example.meeter.interfaces.Interaction;
+import org.example.meeter.interactions.Interaction;
 import org.example.meeter.people.Human;
 import org.example.meeter.place.Place;
 import org.example.meeter.auth.user.User;

@@ -1,4 +1,4 @@
-package org.example.meeter.meeting;
+package org.example.meeter.interactions.meeting;
 
 import org.example.meeter.people.Human;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package org.example.meeter.visits;
+package org.example.meeter.interactions.visits;
 
 import org.example.meeter.errors.ResourceNotFoundException;
 import org.example.meeter.people.Human;

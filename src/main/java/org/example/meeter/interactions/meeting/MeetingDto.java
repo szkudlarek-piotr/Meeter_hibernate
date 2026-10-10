@@ -1,4 +1,4 @@
-package org.example.meeter.meeting;
+package org.example.meeter.interactions.meeting;
 
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
