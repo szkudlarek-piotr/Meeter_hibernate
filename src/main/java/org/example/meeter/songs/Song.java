@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.example.meeter.user.User;
+import org.example.meeter.auth.user.User;
 
 @Entity
 @NoArgsConstructor

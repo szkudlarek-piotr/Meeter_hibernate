@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.meeter.user.User;
+import org.example.meeter.auth.user.User;
 
 @Entity
 @Getter

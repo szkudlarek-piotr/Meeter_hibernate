@@ -1,7 +1,7 @@
 package org.example.meeter.people;
 
 import jakarta.transaction.Transactional;
-import org.example.meeter.userDetailsService.CurrentUser;
+import org.example.meeter.auth.userDetailsService.CurrentUser;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 

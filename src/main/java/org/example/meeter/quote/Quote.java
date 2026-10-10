@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.meeter.people.Human;
-import org.example.meeter.user.User;
+import org.example.meeter.auth.user.User;
 import org.hibernate.annotations.CurrentTimestamp;
 
 import java.time.LocalDateTime;

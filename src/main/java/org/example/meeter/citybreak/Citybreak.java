@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.meeter.people.Human;
 import org.example.meeter.place.Place;
-import org.example.meeter.user.User;
+import org.example.meeter.auth.user.User;
 
 import java.time.LocalDateTime;
 import java.util.List;

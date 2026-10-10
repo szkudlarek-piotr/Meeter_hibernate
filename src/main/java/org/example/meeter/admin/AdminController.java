@@ -1,29 +1,14 @@
 package org.example.meeter.admin;
 
-import org.example.meeter.people.Human;
 import org.example.meeter.people.HumanRepository;
-import org.example.meeter.photo.Photo;
 import org.example.meeter.photo.PhotoRepository;
-import org.example.meeter.photo.PhotoType;
-import org.example.meeter.user.User;
-import org.example.meeter.user.UserRepository;
-import org.example.meeter.userRoles.UserRole;
-import org.example.meeter.userRoles.UserRolesRepository;
-import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.security.core.parameters.P;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.example.meeter.auth.user.User;
+import org.example.meeter.auth.user.UserRepository;
+import org.example.meeter.auth.userRoles.UserRolesRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.Normalizer;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/admin")
