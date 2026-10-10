@@ -1,4 +1,4 @@
-package org.example.meeter.login;
+package org.example.meeter.auth.login;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
