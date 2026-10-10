@@ -1,9 +1,9 @@
-package org.example.meeter.userDetailsService;
+package org.example.meeter.auth.userDetailsService;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.example.meeter.people.Human;
-import org.example.meeter.user.User;
+import org.example.meeter.auth.user.User;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

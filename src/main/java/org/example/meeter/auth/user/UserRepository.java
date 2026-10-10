@@ -1,4 +1,4 @@
-package org.example.meeter.user;
+package org.example.meeter.auth.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

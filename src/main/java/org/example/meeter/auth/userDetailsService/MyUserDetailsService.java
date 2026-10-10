@@ -1,9 +1,8 @@
-package org.example.meeter.userDetailsService;
+package org.example.meeter.auth.userDetailsService;
 
 import lombok.RequiredArgsConstructor;
-import org.example.meeter.errors.ResourceNotFoundException;
-import org.example.meeter.user.User;
-import org.example.meeter.user.UserRepository;
+import org.example.meeter.auth.user.User;
+import org.example.meeter.auth.user.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,7 +23,7 @@ public class MyUserDetailsService implements UserDetailsService {
         User user = userRepository
                 .findUserByUsername(username)
                 .orElseThrow(
-                        () -> new ResourceNotFoundException("Nie znaleziono użytkownika o username = %s.".formatted(username))
+                        () -> new UsernameNotFoundException("Nie znaleziono użytkownika o username = %s.".formatted(username))
                 );
 
         Set<GrantedAuthority> authorities = user.getUserRoles()

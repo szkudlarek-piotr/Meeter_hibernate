@@ -1,9 +1,7 @@
-package org.example.meeter.userRoles;
+package org.example.meeter.auth.userRoles;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
-import java.util.UUID;
 
 public interface UserRolesRepository extends JpaRepository<UserRole, Long> {
     @Query("select r from UserRole r WHERE r.roleName = concat('ROLE_', ?1)")

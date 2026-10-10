@@ -1,10 +1,9 @@
-package org.example.meeter.user;
+package org.example.meeter.auth.user;
 
 import org.example.meeter.errors.ResourceNotFoundException;
 import org.example.meeter.people.Human;
 import org.example.meeter.people.HumanRepository;
-import org.example.meeter.userRoles.UserRole;
-import org.example.meeter.userRoles.UserRolesRepository;
+import org.example.meeter.auth.userRoles.UserRolesRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 

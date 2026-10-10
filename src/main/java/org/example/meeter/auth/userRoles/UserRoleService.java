@@ -1,4 +1,4 @@
-package org.example.meeter.userRoles;
+package org.example.meeter.auth.userRoles;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

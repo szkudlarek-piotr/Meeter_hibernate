@@ -1,11 +1,11 @@
-package org.example.meeter.user;
+package org.example.meeter.auth.user;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.meeter.people.Human;
-import org.example.meeter.userRoles.UserRole;
+import org.example.meeter.auth.userRoles.UserRole;
 import org.hibernate.annotations.CurrentTimestamp;
 
 import java.time.LocalDateTime;

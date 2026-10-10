@@ -1,4 +1,4 @@
-package org.example.meeter.user;
+package org.example.meeter.auth.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
