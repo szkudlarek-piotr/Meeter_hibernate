@@ -19,7 +19,7 @@ import java.util.UUID;
 @Table(name="superpowers")
 public class Superpower {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -35,4 +35,13 @@ public class Superpower {
 
     @ManyToMany(mappedBy = "superpowers")
     private List<Human> humansWithSuperpower;
+
+    public SuperpowerDto getDto() {
+        SuperpowerDto dto = new SuperpowerDto();
+        dto.setName(this.getName());
+        dto.setPhotoAddress("http://localhost:8080/photos/superpowers/" + this.photo.getPhotoName());
+        dto.setUuid(this.getUuid());
+        return dto;
+    }
+
 }
