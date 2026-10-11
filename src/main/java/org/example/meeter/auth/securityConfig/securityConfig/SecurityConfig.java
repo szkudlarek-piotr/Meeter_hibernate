@@ -66,12 +66,6 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .successHandler(successHandler)
                         .permitAll())
-                .authenticationProvider(authenticationProvider(
-                        http.getSharedObject(
-                                org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder.class
-                        ) == null ? null : null,
-                        passwordEncoder()
-                ))
                 .addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
