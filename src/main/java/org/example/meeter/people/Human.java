@@ -15,7 +15,11 @@ import org.example.meeter.quote.Quote;
 import org.example.meeter.multimedia.songs.Song;
 import org.example.meeter.interactions.visits.Visit;
 import org.example.meeter.superpowers.Superpower;
+import org.example.meeter.superpowers.SuperpowerDto;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -100,6 +104,10 @@ public class Human {
         }
     }
 
+    @JsonProperty
+    public List<SuperpowerDto> getSuperpowerDtos() {
+        return this.superpowers.stream().map(Superpower::getDto).toList();
+    }
 
     public HumanTileDto getHumanTileDto() {
         Random rand = new Random();
@@ -113,6 +121,7 @@ public class Human {
         dto.setCliqueName(this.clique.getCliqueName());
         dto.setNumberOfVisits(this.visits.size());
         dto.setPhotoLink(this.getProfilePhoto());
+        dto.setOtherInteractions(humanTrips.size() + humanMeetings.size() + getHumanEvents().size());
 
         return dto;
     }
