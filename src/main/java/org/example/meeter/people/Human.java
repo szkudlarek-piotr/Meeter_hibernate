@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.meeter.interactions.Interaction;
 import org.example.meeter.interactions.citybreak.Citybreak;
 import org.example.meeter.cliques.Clique;
 import org.example.meeter.interactions.event.Event;
@@ -21,10 +22,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Getter
@@ -72,6 +70,51 @@ public class Human {
 
     @ManyToOne
     private Song song;
+
+    public BigDecimal getInterationsPoints(List<? extends Interaction> interationsList, double pointsFactor, double pointsHalflifeInDays) {
+        return interationsList.stream()
+                .map(visit -> {
+                    LocalDate visitPointsDate = visit.getInteractionPointsDate();
+                    double daysBetween = Duration.between(
+                            visitPointsDate.atStartOfDay(),
+                            LocalDate.now().atStartOfDay()
+                    ).toDays();
+
+                    double exponent = daysBetween / pointsHalflifeInDays;
+                    double visitPoints = Math.pow(0.5, exponent) * pointsFactor;
+
+                    return BigDecimal.valueOf(visitPoints)
+                            .setScale(3, RoundingMode.HALF_UP);
+                })
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    @JsonProperty
+    public BigDecimal getVisitPoints() {
+        return getInterationsPoints(this.getVisits(), 6, 365*2);
+    }
+
+    @JsonProperty
+    public BigDecimal getMeetingPoints() {
+        return getInterationsPoints(this.getHumanMeetings(), 3, 365);
+    }
+
+    @JsonProperty
+    public BigDecimal getEventsPoints() {
+        return getInterationsPoints(this.getHumanEvents(), 1, 180);
+    }
+
+    @JsonProperty
+    public BigDecimal getTripPoints() {
+        return getInterationsPoints(this.humanTrips, 4, 3650);
+    }
+
+
+    public BigDecimal getTotalPoints() {
+        return getVisitPoints().add(getTripPoints()).add(getMeetingPoints()).add(getEventsPoints());
+    }
+
+
 
     @ManyToMany
     @JsonIgnore
