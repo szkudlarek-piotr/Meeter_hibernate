@@ -1,7 +1,9 @@
 package org.example.meeter.people;
 
 import jakarta.transaction.Transactional;
+import org.apache.coyote.Response;
 import org.example.meeter.auth.userDetailsService.CurrentUser;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,5 +35,10 @@ public class HumanController {
     public HumanTileDto showDetailsAboutMe(@AuthenticationPrincipal CurrentUser currentUser) {
         Human human = humanService.findHumanById(currentUser.getHuman().getId());
         return human.getHumanTileDto();
+    }
+
+    @GetMapping("/sortedHumans")
+    public ResponseEntity<List<HumanTileDto>> getSortedTiles() {
+        return ResponseEntity.ok(humanService.getSortedTiles());
     }
 }

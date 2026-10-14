@@ -5,6 +5,7 @@ import org.example.meeter.quote.Quote;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,6 +41,12 @@ public class HumanService {
                 .orElseThrow(
                         () -> new ResourceNotFoundException("Nie znaleziono uzytkownika o UUID = %s.".formatted(uuid))
                 );
+    }
+
+    public List<HumanTileDto> getSortedTiles() {
+        List<Human> humans = humanRepository.getSortedHumansNew();
+
+        return humans.stream().map(Human::getHumanTileDto).toList();
     }
 
 }
