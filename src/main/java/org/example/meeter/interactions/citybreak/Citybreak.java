@@ -5,10 +5,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.meeter.interactions.Interaction;
 import org.example.meeter.people.Human;
 import org.example.meeter.place.Place;
 import org.example.meeter.auth.user.User;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -17,7 +19,7 @@ import java.util.UUID;
 @Setter
 @Getter
 @Table(name="trips")
-public class Citybreak {
+public class Citybreak implements Interaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
@@ -48,4 +50,8 @@ public class Citybreak {
     )
     List<Human> humansInTrip;
 
+    @Override
+    public LocalDate getInteractionPointsDate() {
+        return this.endDate.toLocalDate();
+    }
 }
