@@ -43,6 +43,12 @@ public class HumanController {
         return ResponseEntity.ok(currentUser.getUsername());
     }
 
+    @Transactional
+    @GetMapping("/myName")
+    public ResponseEntity<String> getYourFullName(@AuthenticationPrincipal CurrentUser currentUser) {
+        return ResponseEntity.ok(currentUser.getHuman().getName() + " "+ currentUser.getHuman().getSurname());
+    }
+
     @GetMapping("/sortedHumans")
     public ResponseEntity<List<HumanTileDto>> getSortedTiles() {
         return ResponseEntity.ok(humanService.getSortedTiles());
